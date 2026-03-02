@@ -3,11 +3,17 @@ from backend.rag.retrieve import retrieve
 from backend.models.llm import generate_answer
 from backend.rag.ingest import ingest_pdf, ingest_image
 from backend.rag.chroma_db import clear_db
-
-app = FastAPI()
-
+from fastapi.middleware.cors import CORSMiddleware
 from backend.tools.router import decide_tool
 from backend.tools.web_search import web_search
+app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/chat")
 async def chat(query: str):

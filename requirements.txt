@@ -12,6 +12,7 @@ pypdf
 python-multipart
 python-dotenv
 
+python-bidi==0.4.2
 easyocr
 opencv-python-headless
 pytesseract
